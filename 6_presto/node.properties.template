@@ -1,0 +1,5 @@
+node.environment=development
+node.id={{ node_id }}
+node.data-dir=/var/presto/data
+experimental.spill-enabled=true
+experimental.spiller-spill-path=/tmp

@@ -11,7 +11,7 @@ curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && \
 python3 get-pip.py && \
 pip install pyzmq==17 jupyter
 
-RUN  curl -O https://www-eu.apache.org/dist/spark/spark-2.4.4/spark-2.4.4-bin-without-hadoop.tgz && \
+RUN  curl -O https://www-us.apache.org/dist/spark/spark-2.4.4/spark-2.4.4-bin-without-hadoop.tgz && \
 tar zxf spark-2.4.4-bin-without-hadoop.tgz && \
 ln -s spark-2.4.4-bin-without-hadoop spark && \
 rm spark-2.4.4-bin-without-hadoop.tgz

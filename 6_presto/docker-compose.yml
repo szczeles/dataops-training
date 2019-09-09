@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  coordinator:
+    image: lewuathe/presto-coordinator:317
+    volumes: 
+      - ./hive.properties:/usr/local/presto/etc/catalog/hive.properties
+    networks: ["vnet"]
+    ports:
+      - "8080:8080"
+    container_name: "coordinator"
+    command: coordinator
+  worker0:
+    image: lewuathe/presto-worker:317
+    volumes: 
+      - ./hive.properties:/usr/local/presto/etc/catalog/hive.properties
+      - ./jvm.config:/usr/local/presto/etc/catalog/jvm.config
+      - ./node.properties.template:/usr/local/presto/etc/node.properties.template
+      - ./config.properties:/usr/local/presto/etc/config.properties
+    networks: ["vnet"]
+    container_name: "worker0"
+    ports:
+      - "8081:8081"
+    command: worker0
+#  worker1:
+#    image: lewuathe/presto-worker:317
+#    volumes: 
+#      - ./hive.properties:/usr/local/presto/etc/catalog/hive.properties
+#      - ./jvm.config:/usr/local/presto/etc/catalog/jvm.config
+#      - ./node.properties.template:/usr/local/presto/etc/catalog/node.properties.template
+#    networks: ["vnet"]
+#    container_name: "worker1"
+#    ports:
+#      - "8082:8081"
+#    command: worker1
+
+networks:
+  vnet:
+    external:
+      name: 3_hadoop_default

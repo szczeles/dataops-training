@@ -46,8 +46,32 @@ services:
       - hadoop_historyserver:/hadoop/yarn/timeline
     env_file:
       - ./hadoop.env
-  
+
+  hive-metastore:
+    image: bde2020/hive:2.3.2-postgresql-metastore
+    env_file:
+      - ./hadoop.env
+    volumes:
+      - hive_metastore:/metastore
+      - ./run-metastore.sh:/run-metastore.sh
+    command: /run-metastore.sh
+    environment:
+      SERVICE_PRECONDITION: "namenode:50070 datanode:50075"
+    ports:
+      - "9083:9083"
+
+  hive-server:
+    image: bde2020/hive:2.3.2-postgresql-metastore
+    env_file:
+      - ./hadoop.env
+    environment:
+      HIVE_CORE_CONF_javax_jdo_option_ConnectionURL: ""
+      SERVICE_PRECONDITION: "hive-metastore:9083"
+    ports:
+      - "10000:10000"
+
 volumes:
   hadoop_namenode:
   hadoop_datanode:
   hadoop_historyserver:
+  hive_metastore:

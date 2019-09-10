@@ -8,8 +8,7 @@ Dump of stackoverflow data, `Badges.xml`
 
 ## Start MySQL
 
-    DATA_DIR=/var/lib/transmission-daemon/downloads/stackexchange
-    docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -v $DATA_DIR:/data -d mysql:latest --secure-file-priv=/data
+    docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -v /c:/data -d mysql:latest --secure-file-priv=/data
 
 ## Connect to MySQL
 

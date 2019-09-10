@@ -57,6 +57,7 @@ services:
 
   hive-metastore:
     image: bde2020/hive:2.3.2-postgresql-metastore
+    container_name: hive-metastore
     env_file:
       - ./hadoop.env
     volumes:
@@ -70,6 +71,7 @@ services:
 
   hive-server:
     image: bde2020/hive:2.3.2-postgresql-metastore
+    container_name: hive-server
     env_file:
       - ./hadoop.env
     environment:

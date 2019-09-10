@@ -18,6 +18,8 @@ services:
       - hadoop_datanode:/hadoop/dfs/data
     environment:
       SERVICE_PRECONDITION: "namenode:50070"
+    ports:
+      - 50070:50070
     env_file:
       - ./hadoop.env
   
@@ -26,6 +28,8 @@ services:
     container_name: resourcemanager
     environment:
       SERVICE_PRECONDITION: "namenode:50070 datanode:50075"
+    ports:
+      - 8088:8088
     env_file:
       - ./hadoop.env
 
@@ -34,6 +38,8 @@ services:
     container_name: nodemanager
     environment:
       SERVICE_PRECONDITION: "namenode:50070 datanode:50075 resourcemanager:8088"
+    ports:
+      - 8042:8042
     env_file:
       - ./hadoop.env
   
@@ -44,6 +50,8 @@ services:
       SERVICE_PRECONDITION: "namenode:50070 datanode:50075 resourcemanager:8088"
     volumes:
       - hadoop_historyserver:/hadoop/yarn/timeline
+    ports:
+      - 8188:8188
     env_file:
       - ./hadoop.env
 

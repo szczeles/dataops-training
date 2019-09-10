@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  jupyter:
+    image: dataops:latest
+    networks: ["hadoop"]
+    env_file:
+      - ./hadoop.env
+    volumes:
+      - notebooks:/notebooks
+    ports:
+     - 8888:8888
+
+networks:
+  hadoop:
+    external:
+      name: 3_hadoop_default
+
+volumes:
+  notebooks:
+

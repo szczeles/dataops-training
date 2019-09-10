@@ -12,7 +12,7 @@ Dump of stackoverflow data, `Badges.xml`
 
 ## Connect to MySQL
 
-    sudo docker exec -ti some-mysql mysql -pmy-secret-pw
+    docker exec -ti some-mysql mysql -pmy-secret-pw
 
 ## Load data
 

@@ -3,6 +3,7 @@ version: '3'
 services:
   jupyter:
     image: dataops:latest
+    container_name: jupyter
     networks: ["hadoop"]
     env_file:
       - ./hadoop.env

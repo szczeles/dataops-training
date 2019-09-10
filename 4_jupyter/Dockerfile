@@ -20,11 +20,13 @@ ENV PYSPARK_PYTHON python3
 ENV PATH /opt/spark/bin:$PATH
 ENV PYTHONPATH /opt/spark/python/lib/pyspark.zip:/opt/spark/python/lib/py4j-0.10.7-src.zip
 ENV SPARK_DIST_CLASSPATH /etc/hadoop:/opt/hadoop-2.7.4/share/hadoop/common/lib/*:/opt/hadoop-2.7.4/share/hadoop/common/*:/opt/hadoop-2.7.4/share/hadoop/hdfs:/opt/hadoop-2.7.4/share/hadoop/hdfs/lib/*:/opt/hadoop-2.7.4/share/hadoop/hdfs/*:/opt/hadoop-2.7.4/share/hadoop/yarn/lib/*:/opt/hadoop-2.7.4/share/hadoop/yarn/*:/opt/hadoop-2.7.4/share/hadoop/mapreduce/lib/*:/opt/hadoop-2.7.4/share/hadoop/mapreduce/*:/contrib/capacity-scheduler/*.jar
+ENV SPARK_HOME /opt/spark
+ENV HADOOP_CONF_DIR /etc/hadoop
+
+COPY start.sh /start.sh
 
 RUN echo '<configuration><property><name>hive.metastore.uris</name><value>thrift://hive-metastore:9083</value></property></configuration>' > /opt/spark/conf/hive-site.xml
 
 EXPOSE 8888
 
-ENTRYPOINT bash
-
-CMD ["-c", "cd /notebooks; jupyter notebook --no-browser"]
+CMD /start.sh

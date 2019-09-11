@@ -50,6 +50,14 @@ Does it help if the index is added? Like `create index user_id on Badges (UserId
    * What was the most popular one?
 * How long did it take to get 10 badges starting from the first badge? 
    * Who was the fastest?
+   
+```
+select Name, count(*) from (
+  select UserId, Name, row_number() over w as age 
+  from Badges where TagBased = 'True' 
+  WINDOW w as (PARTITION BY UserId ORDER BY Date)
+) ttt where age=1 group by Name order by count(*) desc limit 10;
+```
 
 ## Diagnostics
 

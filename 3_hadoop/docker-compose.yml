@@ -8,6 +8,8 @@ services:
       - hadoop_namenode:/hadoop/dfs/name
     environment:
       - CLUSTER_NAME=test
+    ports:
+      - 50070:50070
     env_file:
       - ./hadoop.env
 
@@ -18,8 +20,6 @@ services:
       - hadoop_datanode:/hadoop/dfs/data
     environment:
       SERVICE_PRECONDITION: "namenode:50070"
-    ports:
-      - 50070:50070
     env_file:
       - ./hadoop.env
   

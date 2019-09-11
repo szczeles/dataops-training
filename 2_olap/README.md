@@ -8,6 +8,7 @@
 
 1. HTTP Sourcce
 2. Url: https://github.com/szczeles/dataops-training/blob/master/2_olap/badges-sample.csv.gz?raw=true - badges assigned during 2019, 2.9M rows
+3. Backup url:  http://aruba4.zailesprzedam.pl:6002/badges-sample.csv.gz
 
 ## Examine the data
 

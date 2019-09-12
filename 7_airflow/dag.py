@@ -4,12 +4,11 @@ from datetime import datetime
 
 default_args = {
     'owner': 'airflow',
-    'depends_on_past': True,
     'start_date': datetime(2019, 1, 1)
 }
 
 dag = DAG('stackoverflow_stats', default_args=default_args,
-          schedule_interval='@daily', max_active_runs=1)
+          schedule_interval='@daily')
 
 SparkSubmitOperator(
     task_id='get-stats',

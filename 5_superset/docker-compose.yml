@@ -3,20 +3,28 @@ services:
   redis:
     image: redis
     restart: always
+    networks: ["vnet"]
     volumes:
       - redis:/data
   superset:
-    image: amancevice/superset
+    container_name: superset
+    image: superset-dataops
     restart: always
+    networks: ["vnet"]
     depends_on:
       - redis
     environment:
       SUPERSET_HOME: /etc/superset
     ports:
-      - "8088:8088"
+      - "8000:8088"
     volumes:
       - ./superset_config.py:/etc/superset/superset_config.py
       - superset:/var/lib/superset
 volumes:
   redis:
   superset:
+
+networks:
+  vnet:
+    external:
+      name: 3_hadoop_default

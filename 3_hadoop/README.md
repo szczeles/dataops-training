@@ -22,3 +22,12 @@ beeline -u 'jdbc:hive2://localhost:10000'
 CREATE TABLE pokes (foo INT, bar STRING);
 LOAD DATA LOCAL INPATH '/opt/hive/examples/files/kv1.txt' OVERWRITE INTO TABLE pokes;
 ```
+
+# Hive-compatible query
+
+```
+select Name, count(*) as cnt from (
+  select UserId, Name, row_number() over (PARTITION BY UserId ORDER BY `Date`) as age 
+  from Badges where not TagBased 
+) ttt where age=1 group by Name order by cnt desc limit 10;
+```

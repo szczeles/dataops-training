@@ -21,3 +21,9 @@ TBLPROPERTIES (
   'transient_lastDdlTime' = '1568273882'
 )
 ```
+
+## Running with YARN
+
+```
+ spark-submit --master yarn --num-executors 2 --executor-memory 2g --executor-cores 4 /tmp/techstats.py --date 2019-08-02
+ ```
